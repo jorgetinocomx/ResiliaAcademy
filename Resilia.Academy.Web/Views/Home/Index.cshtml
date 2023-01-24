@@ -9,3 +9,16 @@
 
 <div>Graph API result</div>
 <div>@ViewData["GraphApiResult"]</div>
+
+<div aria-live="polite"  aria-atomic="true" style="position: relative; min-height: 200px;">
+    <!-- Position it -->
+    <div id="notification-space" style="position: absolute; top: 0; right: 0;">
+
+        <!-- Then put toast-template within -->
+        <partial name="_Notification"></partial>
+       
+    </div>
+</div>
+
+
+<script src="~/js/features/notifications.js"></script>
