@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resilia.Academy.Api", "Resi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resilia.Academy.Api.Models", "Resilia.Academy.Api.Models\Resilia.Academy.Api.Models.csproj", "{47EF1FA3-C853-414F-A4AD-42794892E0DB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resilia.Academy.WebApp", "Resilia.Academy.WebApp", "{7DB06368-DC9F-47E2-B4E6-A92DB8B679D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{E04B5373-70AA-446B-8D80-C358E0312A2A} = {7DB06368-DC9F-47E2-B4E6-A92DB8B679D0}
 		{75739305-A8D1-40C1-8626-47DE23D39FA8} = {11E3FD97-CD34-4782-ACDB-448604C3B4BD}
 		{47EF1FA3-C853-414F-A4AD-42794892E0DB} = {11E3FD97-CD34-4782-ACDB-448604C3B4BD}
 	EndGlobalSection
