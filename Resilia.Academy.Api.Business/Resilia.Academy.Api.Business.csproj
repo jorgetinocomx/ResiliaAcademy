@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Resilia.Academy.Api.Business.Interfaces\Resilia.Academy.Api.Business.Interfaces.csproj" />
+    <ProjectReference Include="..\Resilia.Academy.Api.DataAccess.Interfaces\Resilia.Academy.Api.DataAccess.Interfaces.csproj" />
+    <ProjectReference Include="..\Resilia.Academy.Api.Models\Resilia.Academy.Api.Models.csproj" />
+  </ItemGroup>
+
+</Project>

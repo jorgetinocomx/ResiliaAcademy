@@ -1,30 +1,58 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Resilia.Academy.Api.Business.Interfaces;
 using Resilia.Academy.Api.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Resilia.Academy.Api.Controllers
 {
+    /// <summary>
+    /// Manages all the Resilia notifications.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class NotificationController : Controller
     {
         private readonly ILogger<NotificationController> _logger;
+        private readonly INotificationBusiness _business;
 
-        public NotificationController(ILogger<NotificationController> logger)
+        /// <summary>
+        /// Inject the dependencies.
+        /// </summary>
+        /// <param name="logger">MS logger dependency instanciated.</param>
+        /// <param name="business">Notifications business dependency instanciated.</param>
+        public NotificationController(ILogger<NotificationController> logger, INotificationBusiness business)
         {
             _logger = logger;
+            _business = business;
         }
 
         /// <summary>
-        /// Get all the notifications for an specific user.
+        /// Get all the notifications for an specific userEmail.
         /// </summary>
-        /// <param name="user">User email.</param>
+        /// <param name="userEmail">User email.</param>
         /// <returns>Notifications.</returns>
         [HttpGet]
-        public IEnumerable<NotificationModel> Get(string user)
+        [Produces("application/json")]
+        public IEnumerable<NotificationModel> Get([EmailAddress] string userEmail)
         {
-            var fakeNotification = new NotificationModel() { Title = " Hi , there", Message = "this is notifiation", TimeAgo = "right now" };
-            var arrayNotif = new NotificationModel[1] {fakeNotification};
-            return arrayNotif;
+            _logger.LogDebug($"Requested notifications for user : {userEmail}");
+            var notifications = _business.GetNotifications(userEmail);
+            return notifications;
+        }
+
+        /// <summary>
+        /// Put some notifications for an specific userEmail.
+        /// </summary>
+        /// <param name="newNotificationData">Required data to craete a notification..</param>
+        /// <returns>Notification id generated. When 0, no notification was generated.</returns>
+        [HttpPost()]
+        public IActionResult New(NewNotificationModel newNotificationData)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var notificationId = _business.NewNotification(newNotificationData);
+            _logger.LogDebug($"A notification with this ID was generated : {notificationId}");
+            return Ok(notificationId);
         }
     }
 }
