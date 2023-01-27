@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Resilia.Academy.Api.Business.Interfaces;
 using Resilia.Academy.Api.Models;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,8 @@ namespace Resilia.Academy.Api.Controllers
     /// Manages all the Resilia notifications.
     /// </summary>
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/notification")]
+    [EnableCors("_myAllowSpecificOriginsForResiliaApp")]
     public class NotificationController : Controller
     {
         private readonly ILogger<NotificationController> _logger;

@@ -5,8 +5,20 @@ using Resilia.Academy.Api.DataAccess;
 using Resilia.Academy.Api.DataAccess.Interfaces;
 using Resilia.Academy.Api.Hubs;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOriginsForResiliaApp";
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApiDb");
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy
+                            .WithOrigins("https://localhost:7064")
+                            .AllowAnyHeader();
+                      });
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -34,6 +46,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthorization();
 
