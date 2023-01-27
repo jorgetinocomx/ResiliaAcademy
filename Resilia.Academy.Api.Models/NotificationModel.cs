@@ -9,6 +9,11 @@ namespace Resilia.Academy.Api.Models
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         /// <summary>
+        /// Notification ID.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
         /// Notification title.
         /// </summary>
         [Required]

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -19,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Resilia.Academy.Api.Business\Resilia.Academy.Api.Business.csproj" />
     <ProjectReference Include="..\Resilia.Academy.Api.DataAccess\Resilia.Academy.Api.DataAccess.csproj" />
+    <ProjectReference Include="..\Resilia.Academy.Api.Hubs\Resilia.Academy.Api.Hubs.csproj" />
     <ProjectReference Include="..\Resilia.Academy.Api.Models\Resilia.Academy.Api.Models.csproj" />
   </ItemGroup>
 

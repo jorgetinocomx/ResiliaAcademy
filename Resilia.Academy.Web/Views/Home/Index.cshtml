@@ -5,6 +5,7 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <button id="send-notification" type="button" class="btn btn-success">Send notification</button>
 </div>
 
 <div>Graph API result</div>
@@ -22,3 +23,5 @@
 
 
 <script src="~/js/features/notifications.js"></script>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/features/notifications_hubclient.js"></script>

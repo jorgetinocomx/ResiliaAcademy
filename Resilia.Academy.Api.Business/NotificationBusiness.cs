@@ -1,5 +1,7 @@
-﻿using Resilia.Academy.Api.Business.Interfaces;
+﻿using Microsoft.AspNetCore.SignalR;
+using Resilia.Academy.Api.Business.Interfaces;
 using Resilia.Academy.Api.DataAccess.Interfaces;
+using Resilia.Academy.Api.Hubs;
 using Resilia.Academy.Api.Models;
 
 namespace Resilia.Academy.Api.Business
@@ -10,14 +12,18 @@ namespace Resilia.Academy.Api.Business
     public class NotificationBusiness: INotificationBusiness
     {
         private INotificationDataAccess _dataAccess;
+        private readonly IHubContext<NotificationsHub> _hubContext;
+
 
         /// <summary>
         /// Inject the data access instance.
         /// </summary>
         /// <param name="dataAccess">Instanced data access.</param>
-        public NotificationBusiness(INotificationDataAccess dataAccess)
+        /// <param name="hubContext">SignalR dependency with the notifications hub.</param>
+        public NotificationBusiness(INotificationDataAccess dataAccess, IHubContext<NotificationsHub> hubContext)
         {
             _dataAccess= dataAccess;
+            _hubContext= hubContext;
         }
 
         /// <summary>
@@ -54,6 +60,19 @@ namespace Resilia.Academy.Api.Business
                 ReadDate = null
             };  
             var insertedNotification = _dataAccess.NewNotification(entityToBeStored);
+
+            // Send the push notification (as a broadcast)
+            if(insertedNotification.Id != 0)
+            {
+                var notification = new NotificationModel() 
+                { 
+                    Id = insertedNotification.Id, 
+                    Title = insertedNotification.Title, 
+                    Message = insertedNotification.Message,
+                    TimeAgo = RelativeDate(insertedNotification.CreationDate) 
+                };
+                _hubContext.Clients.All.SendAsync("ReceiveNotification", notification);
+            }
             return insertedNotification.Id;
         }
 

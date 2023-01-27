@@ -3,6 +3,7 @@ using Resilia.Academy.Api.Business;
 using Resilia.Academy.Api.Business.Interfaces;
 using Resilia.Academy.Api.DataAccess;
 using Resilia.Academy.Api.DataAccess.Interfaces;
+using Resilia.Academy.Api.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApiDb");
@@ -20,6 +21,9 @@ builder.Services.AddDbContext<ApiDbContext>(options => options.UseSqlServer(conn
 builder.Services.AddScoped<INotificationBusiness, NotificationBusiness>();
 builder.Services.AddScoped<INotificationDataAccess, NotificationDataAccess>();
 
+// Add the SignalR service.
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,5 +38,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Configure the SignalR hubs.
+app.MapHub<NotificationsHub>("/notificationshub");
 
 app.Run();

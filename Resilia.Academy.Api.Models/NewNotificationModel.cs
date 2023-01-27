@@ -3,7 +3,7 @@
 namespace Resilia.Academy.Api.Models
 {
     /// <summary>
-    /// Defines all the data that is required to create a new notification through the API.
+    /// Used to communicate with SignalR
     /// </summary>
     public class NewNotificationModel
     {
