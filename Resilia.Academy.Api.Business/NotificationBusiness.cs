@@ -37,7 +37,7 @@ namespace Resilia.Academy.Api.Business
             var notifications = new List<NotificationModel>();
             foreach (var item in rawData)
             {
-                var notification = new NotificationModel() { Title = "New notification", Message = item.Message, TimeAgo = RelativeDate(item.CreationDate) };
+                var notification = new NotificationModel() { Title = "New notification", Message = item.Message, TimeAgo = RelativeDate(item.CreationDate), IsRead = item.IsRead };
                 notifications.Add(notification);
             }
             return notifications;
@@ -71,7 +71,10 @@ namespace Resilia.Academy.Api.Business
                     Message = insertedNotification.Message,
                     TimeAgo = RelativeDate(insertedNotification.CreationDate) 
                 };
+
+                var notificationList = GetNotifications(newNotificationData.Recipient);
                 _hubContext.Clients.All.SendAsync("ReceiveNotification", notification);
+                _hubContext.Clients.All.SendAsync("ReceiveNotificationList", newNotificationData.Recipient,  notificationList);
             }
             return insertedNotification.Id;
         }

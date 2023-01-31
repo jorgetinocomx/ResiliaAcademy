@@ -1,7 +1,15 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
-// Write your JavaScript code.
+// Define global variables:
+window.userName = "NOT-SET"; //This value will be assigned using the Identity Platform used (the user that is currently logged in)
+var notificationsNumber = 0;
+
+$(document).ready(function () {
+	window.userEmail = $("#user-id").val();
+	UpdateNotificationsCenter();
+});
+
 $("#send-notification").on("click", function () {
 	$.ajax({
 		url: "https://localhost:7011/api/notification",
@@ -32,7 +40,7 @@ function GenerateRandomData() {
 		"title": "string",
 		"message": "string",
 		"author": "user@example.com",
-		"recipient": "user@example.com"
+		"recipient": window.userEmail
 	}
 	return JSON.stringify(data);
 }

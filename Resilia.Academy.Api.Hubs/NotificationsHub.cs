@@ -22,5 +22,16 @@ namespace Resilia.Academy.Api.Hubs
         {
             Clients.All.SendAsync("ReceiveNotification", newNotification);
         }
+
+        /// <summary>
+        /// Send notification list and specify the user that needs to receive the notifications.
+        /// </summary>
+        /// <param name="user">Notification owner (user)</param>
+        /// <param name="notificationList"></param>
+
+        public void SendNotificationListForOneUser(string user,IEnumerable<NotificationModel> notificationList)
+        {
+            Clients.All.SendAsync("ReceiveNotificationList",user, notificationList);
+        }
     }
 }

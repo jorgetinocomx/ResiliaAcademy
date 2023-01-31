@@ -30,6 +30,11 @@ namespace Resilia.Academy.Api.Models
         /// </summary>
         [Required]
         public string TimeAgo { get; set; }
+
+        /// <summary>
+        /// Says if notification was already read.
+        /// </summary>
+        public bool IsRead { get; set; }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
     }

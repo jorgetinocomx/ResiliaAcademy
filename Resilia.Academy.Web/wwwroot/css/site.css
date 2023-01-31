@@ -17,9 +17,24 @@ body {
   margin-bottom: 60px;
 }
 
-
+/*Push Notifications*/
 .notification-logo {
     max-width: 20%;
     max-height: 20%;
     padding-right:1rem;
+}
+
+/*
+Notifications center*/
+.icon-circle {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-item-unread {
+    font-weight: 700!important;
 }
