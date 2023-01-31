@@ -31,7 +31,7 @@ function UpdateNotificationsCenter() {
 			"userEmail": window.userEmail
 		},
 		success: function (notificationListResponse) {
-			console.log("Updating notification center for: ", window.userEmail, notificationListResponse);
+			console.info("Updating notification center for: ", window.userEmail);
 			RedrawNotificationsCenter(notificationListResponse);
 		},
 		error: function (err) {

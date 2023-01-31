@@ -10,6 +10,10 @@ $(document).ready(function () {
 	UpdateNotificationsCenter();
 });
 
+$("#alertsDropdown").on("click", function () {
+	UpdateNotificationsCenter();
+});
+
 $("#send-notification").on("click", function () {
 	$.ajax({
 		url: "https://localhost:7011/api/notification",

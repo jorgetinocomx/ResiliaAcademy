@@ -16,7 +16,7 @@ connection.on("ReceiveNotification", function (receivedData) {
 
 // Recieve the notification list for an specific user
 connection.on("ReceiveNotificationList", function (notificationsOwner, receivedNotifications) {
-    console.log("Notifications ready for: ", notificationsOwner, receivedNotifications);
+    console.info("LIVE UPDATE: Notifications ready for: ", notificationsOwner);
     window.arreglo = receivedNotifications;
     if (window.userEmail == notificationsOwner)
         UpdateNotificationsCenter();
