@@ -18,10 +18,12 @@ $("#send-notification").on("click", function () {
 		contentType: 'application/json',
 		data: GenerateRandomData(),
 		success: function () {
-			console.log("Ajax success!");
+			console.log("Send notification -success!");
 		},
 		error: function (err) {
-			console.error("Ajax error" + err);
+			if (err.status == 400 || err.statusText)
+				alert("Send notification error: " + err.responseText);
+			window.sendNotificationError = err;
 		}
 
 	});
@@ -36,10 +38,11 @@ $("#send-notification").on("click", function () {
  * @param {string} body - notification text body.
  */
 function GenerateRandomData() {
+	
 	var data = {
-		"title": "string",
-		"message": "string",
-		"author": "user@example.com",
+		"title": "App notification",
+		"message": $("#message-to-send").val(),
+		"author": $("#message-sender").val(),
 		"recipient": window.userEmail
 	}
 	return JSON.stringify(data);

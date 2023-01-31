@@ -60,9 +60,8 @@ function RedrawNotificationsCenter(notificationsList) {
 
 	// add the notifications to the list
 	let notificationsDisplayed = 0;
-	$("#notifications-center")
+	$("#notifications-center").html("");
 	window.allNotifications.forEach(function (item) {
-		debugger;
 		notificationsDisplayed++;
 		if (notificationsDisplayed > 3)
 			return;
@@ -70,9 +69,6 @@ function RedrawNotificationsCenter(notificationsList) {
 		$(`.notification-item#${item.id} .notification-item-time-ago`).html(item.timeAgo);
 		$(`.notification-item#${item.id} .notification-item-text`).html(item.message);
 		$(`.notification-item#${item.id}`).show();
-
-		console.log("Printing this", item);
-
 	});
 
 
