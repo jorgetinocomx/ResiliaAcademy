@@ -37,7 +37,7 @@ namespace Resilia.Academy.Api.Business
             var notifications = new List<NotificationModel>();
             foreach (var item in rawData)
             {
-                var notification = new NotificationModel() { Title = "New notification", Message = item.Message, TimeAgo = RelativeDate(item.CreationDate), IsRead = item.IsRead };
+                var notification = new NotificationModel() { Id = item.Id, Title = "New notification", Message = item.Message, TimeAgo = RelativeDate(item.CreationDate), IsRead = item.IsRead };
                 notifications.Add(notification);
             }
             return notifications;
