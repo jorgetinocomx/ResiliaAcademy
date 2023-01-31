@@ -32,6 +32,7 @@ namespace Resilia.Academy.Api.DataAccess
             var itemsFound = _context
                                 .Notifications
                                 .Where(notif => notif.Recipient == forUser)
+                                .OrderByDescending(notif => notif.CreationDate)
                                 .AsEnumerable();
             return itemsFound;
         }
